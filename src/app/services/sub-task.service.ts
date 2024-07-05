@@ -29,6 +29,6 @@ export class SubsubTaskService {
   }
 
   deleteAllSubTask(taskID: number): Observable<void> {
-    return this.http.delete<void>(`${this.subTaskUrl}/delete?subTaskID=${taskID}`);
+    return this.http.delete<void>(`${this.subTaskUrl}/delete?taskID=${taskID}`);
   }
 }

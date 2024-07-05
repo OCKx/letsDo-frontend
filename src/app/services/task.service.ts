@@ -16,8 +16,8 @@ export class TaskService {
     return this.http.get(`${this.taskUrl}?userID=${userID}`);
   }
 
-  getTaskByStatus(userID: number, status: Status): Observable<any> {
-    return this.http.get(`${this.taskUrl}?userID=${userID}&stats=${status}`);
+  getTaskByStatus(userID: number, status: Status): Observable<Task> {
+    return this.http.get(`${this.taskUrl}?userID=${userID}&status=${status}`);
   }
 
   createTask(data: Task): Observable<Task> {
