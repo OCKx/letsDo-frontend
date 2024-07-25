@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SubTask } from '../interface/sub-task.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubsubTaskService {
 
-  subTaskUrl = "https://letsdo-backend.onrender.com/api/v1/sub-task";
+  subTaskUrl = `${environment.HOST}/sub-task`;
 
   constructor(private http: HttpClient) { }
 

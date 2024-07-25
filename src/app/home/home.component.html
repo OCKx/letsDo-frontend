@@ -1,1 +1,17 @@
-<p>home works!</p>
+
+<div>
+    <mat-toolbar>
+        <mat-icon>menu</mat-icon>
+        <h1>letsDo</h1>
+        <h3>Hi {{ firstName }}</h3>
+        <button mat-button color="primary" (click)="logout()">Logout</button>
+    </mat-toolbar>
+</div>
+
+<div>
+    <h1>LETSDO</h1>
+    <p>coming soon</p>
+    <a routerLink="/profile">profile</a>
+  </div>
+
+  <app-profile></app-profile>

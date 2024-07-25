@@ -1,1 +1,49 @@
-<p>signup works!</p>
+<h1>hiii</h1>
+
+<mat-card class="login-card">
+    <form [formGroup]="signupForm" (ngSubmit)="registerUser()">
+        <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" placeholder="first name" required>
+            <mat-error *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched">
+                Please enter a valid name
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" placeholder="last name" required>
+            <mat-error *ngIf="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched">
+                Please enter a valid name
+            </mat-error>
+        </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" placeholder="email address" required>
+        <mat-error *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+            Please Enter a Valid Email
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" placeholder="your password" required>
+        <mat-error *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+            Please Enter a Valid Password
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput formControlName="confirmPassword" type="password" placeholder="confirm your password" required>
+        <mat-error *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched">
+            {{ signupForm.get('confirmPassword')?.errors?.['mismatch'] ? 'Passwords do not match' : 'Please enter a valid password' }}
+        </mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">Signup</button>
+    </form>
+    <a routerLink="/login">login</a>
+  </mat-card>
+  

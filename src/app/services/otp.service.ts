@@ -1,18 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OTP } from '../interface/otp.service';
+import { OTP } from '../interface/otp.interface';
+import { environment } from 'src/environments/environment';
+import { User } from '../interface/user.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OtpService {
 
-  otpUrl = "https://letsdo-backend.onrender.com/api/v1/otp";
+  otpUrl = `${environment.HOST}/otp`;
 
   constructor(private http: HttpClient) { }
 
-  verifyEmail (email: OTP): Observable<OTP> {
+  verifyEmail (email: User): Observable<User> {
     return this.http.post(`${this.otpUrl}/forgot-password`, email);
   }
   

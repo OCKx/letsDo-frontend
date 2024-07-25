@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Task, Status } from '../interface/task.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  taskUrl = "https://letsdo-backend.onrender.com/api/v1/task";
+  taskUrl = `${environment.HOST}/task`;
 
   constructor(private http: HttpClient) { }
 
