@@ -1,0 +1,56 @@
+<p>profile works!</p>
+<div>
+    <ul *ngFor="let user of userData">
+        <li>FirstName: {{user.firstName}}</li>
+        <li>LastName: {{user.lastName}}</li>
+        <li>Email: {{user.email}}</li>
+    </ul>
+</div>
+
+
+<mat-card class="login-card">
+    <form [formGroup]="updateForm" (ngSubmit)="updateUser()">
+        <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" placeholder="first name">
+            <mat-error *ngIf="updateForm.get('firstName')?.invalid">
+                Please enter a valid name
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" placeholder="last name">
+            <mat-error *ngIf="updateForm.get('lastName')?.invalid">
+                Please enter a valid name
+            </mat-error>
+        </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" placeholder="email address">
+        <mat-error *ngIf="updateForm.get('email')?.invalid">
+            Please Enter a Valid Email
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" placeholder="your password">
+        <mat-error *ngIf="updateForm.get('password')?.invalid">
+            Please Enter a Valid Password
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput formControlName="confirmPassword" type="password" placeholder="confirm your password">
+        <mat-error *ngIf="updateForm.get('confirmPassword')?.invalid">
+            {{ updateForm.get('confirmPassword')?.errors?.['mismatch'] ? 'Passwords do not match' : 'Please enter a valid password' }}
+        </mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">Update</button>
+    </form>
+  </mat-card>
+  

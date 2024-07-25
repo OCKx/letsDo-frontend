@@ -1,3 +1,4 @@
+
 export interface OTP {
     otpID?: number;
     userID?: number;
