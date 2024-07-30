@@ -15,8 +15,8 @@ export class ProfileComponent implements OnInit{
 
   constructor(private fb: FormBuilder, private userService: UserService, private snackBar: MatSnackBar, private router: Router) {
     this.updateForm = this.fb.group({
-      firstName: [''],
-      lastName: [''],
+      firstName: ['', [Validators.maxLength(40)]],
+      lastName: ['', [Validators.maxLength(40)]],
       email: ['', [Validators.email]],
       password: ['', [Validators.minLength(8)]],
       confirmPassword: ['', [Validators.minLength(8)]]
@@ -33,6 +33,11 @@ export class ProfileComponent implements OnInit{
         this.userData.push(res);
         const user = this.userData[0];
         this.userID = user.userID;
+        this.updateForm.patchValue({
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email
+        });
       },
       (error) => {
         console.error('Failed to fetch user data', error);
@@ -41,15 +46,20 @@ export class ProfileComponent implements OnInit{
   }
 
   updateUser(): void {
-    if (this.updateForm.valid) {
-      const { firstName, lastName, email, password } = this.updateForm.value;
-      const user: User = { userID: this.userID, firstName, lastName, email, password };
-      console.log("user", user.userID);
+    if (this.updateForm.valid && this.userID) {
+      const { firstName, lastName, email, password } = this.updateForm.value;       
+
+      const user: User = { userID: this.userID };
+      if (firstName) user.firstName = firstName;
+      if (lastName) user.lastName = lastName;
+      if (email) user.email = email;
+      if (password) user.password = password;
       
       this.userService.updateUser(user).subscribe(
         (res: User) => {
           this.snackBar.open('User updated sucessfully', 'Close', { duration: 3000 });
-          console.log("res", res);
+          this.userData.pop();
+          this.getUserData()
           
         },
         (error) => {
